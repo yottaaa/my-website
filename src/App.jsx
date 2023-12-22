@@ -74,7 +74,7 @@ function App() {
           </Drawer>
           {/* mobilenav */}
           <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-          <Box ml={{ base: 0, md: 60 }} pt={{ base: 24, md: 0 }}>
+          <Box ml={{ base: 0, md: 60 }} pt={{ base: 0, md: 0 }}>
             {/* Content */}
             <Element name="About" className="About" id='About' >
               <AboutSection/>
@@ -104,7 +104,7 @@ const SidebarContent = ({ linkItems, onClose, ...rest }) => {
       h="full"
       py={100}
       {...rest}>
-      <Flex h="50%" alignItems="center" p="10" mb="4" justifyContent="center">
+      <Flex h={{ base: '0', md:"50%" }} alignItems="center" p="10" mb="4" justifyContent="center">
         {/* <Text display={{ base: 'none', md: 'block' }} fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           Logo
         </Text> */}

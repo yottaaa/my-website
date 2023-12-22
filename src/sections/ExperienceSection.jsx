@@ -52,10 +52,10 @@ const ExperienceSection = () => {
     // )
 
     return (
-        <Box minHeight="100vh" px="24" py="10" mb="24">
+        <Box minHeight="100vh" px={{ base: 6, md: 24 }} py="10" mb="24">
             <Heading 
                 mb="12" 
-                size="4xl" 
+                size={{ base: "2xl", md: "4xl" }}
                 color="gray.900"
             >Experience</Heading>
             <Stepper 
@@ -77,7 +77,7 @@ const ExperienceSection = () => {
 
                     <Box ml="6" flexShrink='0'>
                         <StepTitle>
-                            <Text as={'b'} fontSize={"xl"}>{step.title}</Text>
+                            <Text as={'b'} fontSize={{ base: "lg", md: "xl" }}>{step.title}</Text>
                             <Text>{step.company}</Text>
                             <Text my="4" fontSize="sm" color={'gray'}>{step.date
                             }</Text>

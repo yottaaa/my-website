@@ -93,7 +93,7 @@ const SkillsSection = () => {
     const btnRef = React.useRef()
 
     return (
-        <Box minHeight="100vh" px="24" py="10" mb="14">
+        <Box minHeight="100vh" px={{ base: 6, md: 24 }} py="10" mb="14">
             <Drawer
                 isOpen={isOpen}
                 placement='right'
@@ -113,7 +113,7 @@ const SkillsSection = () => {
             </Drawer>
             <Heading 
                 mb="24" 
-                size="4xl" 
+                size={{ base: "2xl", md: "4xl" }}
                 color="gray.900"
             >Skills</Heading>
             <Box mb={24}>
@@ -176,8 +176,8 @@ const ProjectCard = ({ setActiveProject, activeKey, project, btnRef, onOpen }) =
         <Box 
             my={2}
             mr={10} 
-            height={300} 
-            width={280} 
+            height={{ base: 300, md: 300 }} 
+            width={{ base: 200, md: 280 }} 
             overflow={'hidden'}
             border='1px' 
             borderColor='gray.200'

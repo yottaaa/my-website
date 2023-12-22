@@ -31,18 +31,18 @@ const AboutSection = () => {
   }, [shuffle])
 
     return (
-      <Flex direction="column" minHeight="100vh" px="24" py={150}>
+      <Flex direction="column" minHeight="100vh" px={{ base: 6, md: 24 }} py={150}>
         <Box>
           <Heading 
-            my="2" 
-            size="4xl" 
+            my={{ base: "2", md: "2" }} 
+            size={{ base: "2xl", md: "4xl" }}
             color="gray.900"
           >{newGreet}, I'm Erick!</Heading>
-          <Text fontSize='lg' color='gray'>Python Developer | Web and App Developer | Automation Consultant</Text>
+          <Text fontSize={{ base: "sm", md: "lg" }} color='gray'>Python Developer | Web and App Developer | Automation Consultant</Text>
         </Box>
         <Spacer/>
         <Box>
-          <Text>Dedicated and passionate person who loves to learn about technology. My goal is to be a successful IT professional specializing Software Engineering and Data Science. Also, I would like to share my skills and knowledge to everyone.</Text>
+          <Text fontSize={{ base: "sm", md: "md" }}>Dedicated and passionate person who loves to learn about technology. My goal is to be a successful IT professional specializing Software Engineering and Data Science. Also, I would like to share my skills and knowledge to everyone.</Text>
         </Box>
         <Spacer/>
         <Flex>
