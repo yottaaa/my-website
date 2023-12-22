@@ -99,7 +99,7 @@ const SkillsSection = () => {
                 placement='right'
                 onClose={onClose}
                 finalFocusRef={btnRef}
-                size={"lg"}
+                size={{ base: "full", md: "lg" }}
             >
                 <DrawerOverlay />
                 <DrawerContent>
