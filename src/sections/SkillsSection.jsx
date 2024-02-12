@@ -31,6 +31,13 @@ import "react-multi-carousel/lib/styles.css";
 import euodoo_website_1 from '../assets/euodoo_website_1.png';
 import euodoo_website_2 from '../assets/euodoo_website_2.png';
 import euodoo_website_3 from '../assets/euodoo_website_3.png';
+import kanban_php from '../assets/kanban_php.png';
+import attendance_system1 from '../assets/attendance_system1.png';
+import attendance_system2 from '../assets/attendance_system2.png';
+import attendance_system3 from '../assets/attendance_system3.png';
+import attendance_system4 from '../assets/attendance_system4.png';
+import attendance_system5 from '../assets/attendance_system5.png';
+import attendance_system6 from '../assets/attendance_system6.png';
 import FsLightbox from "fslightbox-react";
 
 const responsive = {
@@ -58,7 +65,7 @@ const projects = [
         title: "Kanban PHP", 
         description: "A todo Web application tool for individuals or teams, made in PHP Core. This is my project in Integrative Programming and Technologies,  also in Database Management System.", 
         images: [
-            "https://github.com/yottaaa/Kanban-PHP/blob/main/kanban_php.PNG?raw=true"
+            kanban_php
         ] 
     },
     { 
@@ -83,12 +90,12 @@ const projects = [
       title: "Attendance System with Calculation of Hours", 
       description: "A attendance system that can be calculated your hours of time-in and time-out with export capabilities. This project is for small and large business that needs for tracking employee's attendance. It is made of ReactJS, Antd Design, and DjangoRestFramework.", 
       images: [
-          "https://github.com/yottaaa/euodoo_hris_admin/blob/main/src/assets/attendance_system1.png?raw=true",
-          "https://github.com/yottaaa/euodoo_hris_admin/blob/main/src/assets/attendance_system2.png?raw=true",
-          "https://github.com/yottaaa/euodoo_hris_admin/blob/main/src/assets/attendance_system3.png?raw=true",
-          "https://github.com/yottaaa/euodoo_hris_admin/blob/main/src/assets/attendance_system4.png?raw=true",
-          "https://github.com/yottaaa/euodoo_hris_admin/blob/main/src/assets/attendance_system5.png?raw=true",
-          "https://github.com/yottaaa/euodoo_hris_admin/blob/main/src/assets/attendance_system6.png?raw=true"
+          attendance_system1,
+          attendance_system2,
+          attendance_system3,
+          attendance_system4,
+          attendance_system5,
+          attendance_system6
       ] 
   },
 ];
@@ -186,7 +193,8 @@ const SkillsSection = () => {
                 </Carousel>
                 <FsLightbox
                           toggler={isViewImg}
-                          sources={projects[activeProject]?.images}
+                          sources={projects[activeProject].images}
+                          key={activeProject}
                 />
             </Box>
         </Box>
