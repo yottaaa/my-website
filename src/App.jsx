@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import MyPicture from './assets/me.jpg'
 import { Link as ScrollLink, Element } from 'react-scroll'
 import {
   IconButton,
@@ -113,7 +113,7 @@ const SidebarContent = ({ linkItems, onClose, ...rest }) => {
             boxSize='100%'
             borderRadius='full'
             objectFit='cover' 
-            src="https://media.licdn.com/dms/image/D5603AQGR2TrEs9pUTw/profile-displayphoto-shrink_200_200/0/1682508622986?e=1707350400&v=beta&t=KpydzDEoiwE5hM_iHDe1iGGf-qwD09YgWlsce0TIyvA" 
+            src={MyPicture} 
             alt='Dan Abramov' 
           />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />

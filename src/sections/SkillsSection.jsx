@@ -13,19 +13,25 @@ import {
     DrawerOverlay,
     DrawerContent,
     DrawerCloseButton,
-    useDisclosure
+    useDisclosure,
+    Button
 } from '@chakra-ui/react'
 import { 
     FaHtml5,
     FaCss3Alt,
     FaPython,
-    FaReact
+    FaReact,
+    FaGithub 
 } from "react-icons/fa";
 import { SiSelenium } from "react-icons/si";
 import { IoLogoJavascript } from "react-icons/io5";
 import { DiDjango } from "react-icons/di";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import euodoo_website_1 from '../assets/euodoo_website_1.png';
+import euodoo_website_2 from '../assets/euodoo_website_2.png';
+import euodoo_website_3 from '../assets/euodoo_website_3.png';
+import FsLightbox from "fslightbox-react";
 
 const responsive = {
     superLargeDesktop: {
@@ -68,9 +74,9 @@ const projects = [
         title: "euodoo Technologies Website", 
         description: "A company website", 
         images: [
-            "https://gitlab.com/rockyou_yotta/euodoo-website/-/raw/main/screenshots/euodoo_website_1.png",
-            "https://gitlab.com/rockyou_yotta/euodoo-website/-/raw/main/screenshots/euodoo_website_2.png",
-            "https://gitlab.com/rockyou_yotta/euodoo-website/-/raw/main/screenshots/euodoo_website_3.png"
+            euodoo_website_1,
+            euodoo_website_2,
+            euodoo_website_3
         ] 
     },
     { 
@@ -90,6 +96,7 @@ const projects = [
 const SkillsSection = () => {
     const [activeProject,setActiveProject] = useState(0)
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [isViewImg, setIsViewImg] = useState(false)
     const btnRef = React.useRef()
 
     return (
@@ -99,7 +106,7 @@ const SkillsSection = () => {
                 placement='right'
                 onClose={onClose}
                 finalFocusRef={btnRef}
-                size={{ base: "full", md: "lg" }}
+                size={{ base: "full", md: "md" }}
             >
                 <DrawerOverlay />
                 <DrawerContent>
@@ -107,7 +114,17 @@ const SkillsSection = () => {
                     <DrawerHeader>{projects[activeProject].title}</DrawerHeader>
                     <DrawerBody>
                         <Text mb={10}>{projects[activeProject].description}</Text>
-                        <CarouselDrawer project={projects[activeProject]}/>
+                        {/* Github source */}
+                        {/* View image */}
+                        <Button 
+                          colorScheme='gray' 
+                          variant='solid' 
+                          size={"md"}
+                          onClick={() => setIsViewImg(!isViewImg)}
+                        >
+                          View Image
+                        </Button>
+                        {/* <CarouselDrawer project={projects[activeProject]}/> */}
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>
@@ -136,6 +153,7 @@ const SkillsSection = () => {
                     <DiDjango color="gray" size="5%"  cursor={'pointer'}/>
                     <FaReact color="gray" size="5%"  cursor={'pointer'}/>
                     <SiSelenium color="gray" size="5%"  cursor={'pointer'}/>
+                    <FaGithub color="gray" size="5%"  cursor={'pointer'}/>
                 </HStack>
             </Box>
             <Box>
@@ -166,6 +184,10 @@ const SkillsSection = () => {
                         />
                     ))}
                 </Carousel>
+                <FsLightbox
+                          toggler={isViewImg}
+                          sources={projects[activeProject]?.images}
+                />
             </Box>
         </Box>
     )
@@ -216,107 +238,107 @@ const ProjectCard = ({ setActiveProject, activeKey, project, btnRef, onOpen }) =
     )
 }
 
-const CarouselDrawer = ({ project }) => {
-    const arrowStyles = {
-      cursor: "pointer",
-      pos: "absolute",
-      top: "50%",
-      w: "auto",
-      mt: "-22px",
-      p: "16px",
-      color: "white",
-      fontWeight: "bold",
-      fontSize: "18px",
-      transition: "0.6s ease",
-      borderRadius: "0 3px 3px 0",
-      userSelect: "none",
-      _hover: {
-        opacity: 0.8,
-        bg: "black",
-      },
-    };
+// const CarouselDrawer = ({ project }) => {
+//     const arrowStyles = {
+//       cursor: "pointer",
+//       pos: "absolute",
+//       top: "50%",
+//       w: "auto",
+//       mt: "-22px",
+//       p: "16px",
+//       color: "white",
+//       fontWeight: "bold",
+//       fontSize: "18px",
+//       transition: "0.6s ease",
+//       borderRadius: "0 3px 3px 0",
+//       userSelect: "none",
+//       _hover: {
+//         opacity: 0.8,
+//         bg: "black",
+//       },
+//     };
 
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const slidesCount = project.images.length;
+//     const [currentSlide, setCurrentSlide] = useState(0);
+//     const slidesCount = project.images.length;
   
-    const prevSlide = () => {
-      setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
-    };
+//     const prevSlide = () => {
+//       setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
+//     };
   
-    const nextSlide = () => {
-      setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
-    };
+//     const nextSlide = () => {
+//       setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
+//     };
   
-    const setSlide = (slide) => {
-      setCurrentSlide(slide);
-    };
+//     const setSlide = (slide) => {
+//       setCurrentSlide(slide);
+//     };
   
-    const carouselStyle = {
-      transition: "all .5s",
-      ml: `-${currentSlide * 100}%`,
-    };
-    return (
-      <Flex
-        w="full"
-        // bg="#edf3f8"
-        _dark={{
-          bg: "#3e3e3e",
-        }}
-        p={10}
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Flex w="full" overflow="hidden" pos="relative">
-          <Flex h="400px" w="full" {...carouselStyle}>
-            {project.images.map((img, sid) => (
-              <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
-                <Text
-                  color="white"
-                  fontSize="xs"
-                  p="8px 12px"
-                  pos="absolute"
-                  top="0"
-                >
-                  {sid + 1} / {slidesCount}
-                </Text>
-                <Image
-                  src={img}
-                  alt="carousel image"
-                //   boxSize="full"
-                  backgroundSize="contain"
-                />
-              </Box>
-            ))}
-          </Flex>
-          <Text {...arrowStyles} left="0" onClick={prevSlide}>
-            &#10094;
-          </Text>
-          <Text {...arrowStyles} right="0" onClick={nextSlide}>
-            &#10095;
-          </Text>
-          <HStack justify="center" pos="absolute" bottom="8px" w="full">
-            {Array.from({
-              length: slidesCount,
-            }).map((_, slide) => (
-              <Box
-                key={`dots-${slide}`}
-                cursor="pointer"
-                boxSize={["7px", null, "15px"]}
-                m="0 2px"
-                bg={currentSlide === slide ? "blackAlpha.800" : "blackAlpha.500"}
-                rounded="50%"
-                display="inline-block"
-                transition="background-color 0.6s ease"
-                _hover={{
-                  bg: "blackAlpha.800",
-                }}
-                onClick={() => setSlide(slide)}
-              ></Box>
-            ))}
-          </HStack>
-        </Flex>
-      </Flex>
-    );
-  };
+//     const carouselStyle = {
+//       transition: "all .5s",
+//       ml: `-${currentSlide * 100}%`,
+//     };
+//     return (
+//       <Flex
+//         w="full"
+//         // bg="#edf3f8"
+//         _dark={{
+//           bg: "#3e3e3e",
+//         }}
+//         p={10}
+//         alignItems="center"
+//         justifyContent="center"
+//       >
+//         <Flex w="full" overflow="hidden" pos="relative">
+//           <Flex h="400px" w="full" {...carouselStyle}>
+//             {project.images.map((img, sid) => (
+//               <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
+//                 <Text
+//                   color="white"
+//                   fontSize="xs"
+//                   p="8px 12px"
+//                   pos="absolute"
+//                   top="0"
+//                 >
+//                   {sid + 1} / {slidesCount}
+//                 </Text>
+//                 <Image
+//                   src={img}
+//                   alt="carousel image"
+//                 //   boxSize="full"
+//                   backgroundSize="contain"
+//                 />
+//               </Box>
+//             ))}
+//           </Flex>
+//           <Text {...arrowStyles} left="0" onClick={prevSlide}>
+//             &#10094;
+//           </Text>
+//           <Text {...arrowStyles} right="0" onClick={nextSlide}>
+//             &#10095;
+//           </Text>
+//           <HStack justify="center" pos="absolute" bottom="8px" w="full">
+//             {Array.from({
+//               length: slidesCount,
+//             }).map((_, slide) => (
+//               <Box
+//                 key={`dots-${slide}`}
+//                 cursor="pointer"
+//                 boxSize={["7px", null, "15px"]}
+//                 m="0 2px"
+//                 bg={currentSlide === slide ? "blackAlpha.800" : "blackAlpha.500"}
+//                 rounded="50%"
+//                 display="inline-block"
+//                 transition="background-color 0.6s ease"
+//                 _hover={{
+//                   bg: "blackAlpha.800",
+//                 }}
+//                 onClick={() => setSlide(slide)}
+//               ></Box>
+//             ))}
+//           </HStack>
+//         </Flex>
+//       </Flex>
+//     );
+// };
 
 export default SkillsSection;
