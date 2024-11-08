@@ -31,7 +31,7 @@ const AboutSection = () => {
   }, [shuffle])
 
     return (
-      <Flex direction="column" minHeight="100vh" px={{ base: 6, md: 24 }} py={150}>
+      <Flex direction="column" minHeight="100vh" px={{ base: 6, md: 24 }} justifyContent={"center"}>
         <Box>
           <Heading 
             my={{ base: "2", md: "2" }} 
@@ -40,11 +40,15 @@ const AboutSection = () => {
           >{newGreet}, I'm Erick!</Heading>
           <Text fontSize={{ base: "sm", md: "lg" }} color='gray'>Python Developer | Web and App Developer | Automation Consultant</Text>
         </Box>
-        <Spacer/>
+        <br/>
+        <br/>
+        <br/>
         <Box>
           <Text fontSize={{ base: "sm", md: "md" }}>Dedicated and passionate person who loves to learn about technology. My goal is to be a successful IT professional specializing Software Engineering and Data Science. Also, I would like to share my skills and knowledge to everyone.</Text>
         </Box>
-        <Spacer/>
+        <br/>
+        <br/>
+        <br/>
         <Flex>
           <Link href='https://www.linkedin.com/in/erick-agrade-bautista/' isExternal>
             <Flex 

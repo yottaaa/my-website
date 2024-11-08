@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import MyPicture from './assets/me.jpg'
+import MyPicture from './assets/me_500x500.jpg'
 import { Link as ScrollLink, Element } from 'react-scroll'
 import {
   IconButton,
@@ -37,7 +37,7 @@ function App() {
     setTimeout(() => {
       setIsLoading(false);
     }, 5000);
-  },[])
+  }, [])
 
 
   const LinkItems = [
@@ -48,84 +48,81 @@ function App() {
 
   return (
     <>
-    {
-      isLoading ? 
-        <Flex minH="100vh" alignItems={'center'} justifyContent={'center'}>
-          {/* <iframe src="https://giphy.com/embed/xThtapK3c263ooD0Fa" width="398" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/sticker-traceloops-xThtapK3c263ooD0Fa">via GIPHY</a></p> */}
-          <Image src={FaceSlicing} w='sm'/>
-        </Flex>
-      :
-      <Fade initialScale={0.9} in={!isLoading}>
-        <Box 
-          minH="100vh" 
-          // bg={useColorModeValue('gray.100', 'gray.900')}
-        >
-          <SidebarContent linkItems={LinkItems} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
-          <Drawer
-            isOpen={isOpen}
-            placement="left"
-            onClose={onClose}
-            returnFocusOnClose={false}
-            onOverlayClick={onClose}
-            size="full">
-            <DrawerContent>
-              <SidebarContent linkItems={LinkItems} onClose={onClose} />
-            </DrawerContent>
-          </Drawer>
-          {/* mobilenav */}
-          <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-          <Box ml={{ base: 0, md: 60 }} pt={{ base: 0, md: 0 }}>
-            {/* Content */}
-            <Element name="About" className="About" id='About' >
-              <AboutSection/>
-            </Element>
-            <Element name="Experience" className="Experience" id="Experience" >
-              <ExperienceSection/>
-            </Element>
-            <Element name="Skills" className="Skills" id="Skills" >
-              <SkillsSection/>
-            </Element>
-          </Box>
-        </Box>
-      </Fade>
-    }
+      {
+        isLoading ?
+          <Flex minH="100vh" alignItems={'center'} justifyContent={'center'}>
+            {/* <iframe src="https://giphy.com/embed/xThtapK3c263ooD0Fa" width="398" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/sticker-traceloops-xThtapK3c263ooD0Fa">via GIPHY</a></p> */}
+            <Image src={FaceSlicing} w='sm' />
+          </Flex>
+          :
+          <Fade initialScale={0.9} in={!isLoading}>
+            <Box
+              minH="100vh"
+            // bg={useColorModeValue('gray.100', 'gray.900')}
+            >
+              <SidebarContent linkItems={LinkItems} onClose={() => onClose} display={{ base: 'none', md: 'flex' }} />
+              <Drawer
+                isOpen={isOpen}
+                placement="left"
+                onClose={onClose}
+                returnFocusOnClose={false}
+                onOverlayClick={onClose}
+                size="full">
+                <DrawerContent>
+                  <SidebarContent linkItems={LinkItems} onClose={onClose} />
+                </DrawerContent>
+              </Drawer>
+              {/* mobilenav */}
+              <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
+              <Box ml={{ base: 0, md: 60 }} pt={{ base: 0, md: 0 }}>
+                {/* Content */}
+                <Element name="About" className="About" id='About' >
+                  <AboutSection />
+                </Element>
+                <Element name="Experience" className="Experience" id="Experience" >
+                  <ExperienceSection />
+                </Element>
+                <Element name="Skills" className="Skills" id="Skills" >
+                  <SkillsSection />
+                </Element>
+              </Box>
+            </Box>
+          </Fade>
+      }
     </>
   )
 }
 
 const SidebarContent = ({ linkItems, onClose, ...rest }) => {
   return (
-    <Box
+    <Flex
+      direction={"column"}
+      justifyContent={"center"}
       bg={useColorModeValue('white', 'gray.900')}
       // borderRight="1px"
       // borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
-      py={100}
       {...rest}>
-      <Flex h={{ base: '0', md:"50%" }} alignItems="center" p="10" mb="4" justifyContent="center">
-        {/* <Text display={{ base: 'none', md: 'block' }} fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text> */}
-          <Image
-            display={{ base: 'none', md: 'flex' }}
-            boxSize='100%'
-            borderRadius='full'
-            objectFit='cover' 
-            src={MyPicture} 
-            alt='Dan Abramov' 
-          />
+      <Flex alignItems="center" justifyContent="center">
+        <Box display={{ base: 'none', md: 'block' }}>
+          <img class="img-fluid img-profile rounded-circle" src={MyPicture} alt="..." />
+        </Box>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {linkItems.map((link) => (
-        <ScrollLink to={link.name} spy={true} smooth={true} duration={500} >
-          <NavItem key={link.name} onClick={onClose}>
-            <Heading as='b' size='lg'>{link.name}</Heading>
-          </NavItem>
-        </ScrollLink>
-      ))}
-    </Box>
+      <br/>
+      <br/>
+      <Box>
+        {linkItems.map((link) => (
+          <ScrollLink to={link.name} spy={true} smooth={true} duration={500} >
+            <NavItem key={link.name} onClick={onClose}>
+              <Heading as='b' size='lg'>{link.name}</Heading>
+            </NavItem>
+          </ScrollLink>
+        ))}
+      </Box>
+    </Flex>
   )
 }
 
